@@ -1,0 +1,25 @@
+.nav {
+    ;
+    display: flex;
+    flex-direction: row;
+    background-color: darkorange;
+    justify-content: center;
+
+}
+
+.nav > div {
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 19px;
+    font-family: Chalkboard;
+}
+
+a {
+    color: green;
+}
+
+.moto {
+    color: lightslategray;
+}

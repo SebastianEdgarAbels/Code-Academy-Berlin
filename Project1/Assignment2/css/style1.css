@@ -1,0 +1,80 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: lightgoldenrodyellow;
+    border: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-areas:
+        "nav . nav nav nav nav"
+        "header header header"
+        "footer footer footer footer footer footer footer";
+}
+
+nav {
+    grid-area: nav;
+    background-color: hotpink;
+}
+nav:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-weight: bold;
+    padding-left: 3px;
+}
+
+nav div:not(:first-child) {
+    display: flex;
+    align-items: center;
+}
+
+
+.grid :nth-child(2) {
+    grid-area: header;
+}
+
+footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: space-between;
+    background-color: hotpink;
+    min-height: 20%;
+    margin-top: auto;
+}
+
+footer div>img {
+    width: auto;
+    height: 100%;
+    border: 20px;
+}
+
+/* look again*/
+footer div:not(img) {
+    display: flex;
+    align-items: center;
+}
+
+footer div:last-child {
+    align-self: flex-end;
+    height: auto;
+    padding-right: 4px;
+}
+
+.fa-instagram {
+    padding-left: 3px;
+}
+
+/* This section here is for the header from the index.html */
+header {
+    display: flex;
+    justify-content: space-between;
+}
+header>article {
+    margin: 12px;
+    padding-top: 18px;
+}
+

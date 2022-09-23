@@ -1,0 +1,198 @@
+/* Section for general application - "body" */
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: lightgoldenrodyellow;
+    border: 0;
+}
+body p {
+    padding-left: 15px;
+}
+*{
+    font-family: Chalkboard;
+}
+
+/* navigation bar with the "a" tag */
+nav {
+    background-color: hotpink;
+
+}
+
+.active {
+    background-color: cadetblue;
+}
+nav>div {
+    width: 100%;
+}
+nav:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-weight: bold;
+    padding-left: 3px;
+}
+
+nav div:not(:first-child) {
+    display: flex;
+    align-items: center;
+}
+
+div>a {
+    color: beige;
+    text-decoration: none;
+}
+div>a:hover {
+    background-color: cadetblue;
+}
+
+/* footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: hotpink;
+    min-height: 20%;
+    margin-top: auto;
+}
+
+footer div>img {
+    width: auto;
+    height: 100%;
+    border: 20px;
+}
+
+/* look again*/
+footer div:not(img) {
+    display: flex;
+    align-items: center;
+}
+
+footer div:last-child {
+    align-self: flex-end;
+    height: auto;
+    padding-right: 4px;
+}
+
+.fa-instagram {
+    padding-left: 3px;
+}
+
+/* This section here is for the header from the index.html */
+header {
+    display: flex;
+    justify-content: space-between;
+}
+header>article {
+    margin: 12px;
+    padding-top: 18px;
+}
+
+
+address>a {
+    text-decoration: none;
+    color: hotpink;
+}
+
+address>a:hover {
+    color: darkgreen;
+}
+
+/*div h1:only-of-type {*/
+.container-index {
+    max-width: 600px;
+    margin: auto;
+}
+
+/* contact.html Section */
+#contact-box {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: auto;
+}
+
+#contact-box pre>p {
+    padding-left: 70px;
+}
+
+address {
+    padding-top: 175px;
+}
+
+/*this is the class for the google map*/
+.jss108 {
+    padding-top: 25px;
+    padding-left: 45px;
+    position: relative;
+    height: 300px;
+    width: 600px;
+}
+
+/*registration.html container*/
+.reg-container {
+    max-width: 600px;
+    margin: auto;
+}
+
+/* This section is from the registration.html for the selection forms */
+.selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/*imi alege fiecare instanta dupa incepand cu a 2-a inlcusiv*/
+/*could also be .selection div:appnot(:first-child)*/
+.selection div:nth-of-type(1n+2) {
+    padding-left: 65px;
+}
+
+
+
+div select {
+    width: 160px;
+    position: inherit;
+}
+
+/* This class .info is for the placeholders (name, surname and address) responsible - registration.html */
+div input {
+    margin-top: 20px;
+}
+
+/* submit button from registration.html */
+.submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* registration.html */
+#terms\&cond {
+    padding-left: 25px;
+}
+ol {
+    padding-left: 50px;
+}
+address>a {
+    padding-left: 15px;
+}
+
+/*This section here is for the table from the spage.html */
+.table-container {
+    max-width: 600px;
+    margin: auto;
+}
+table th {
+    text-align: left;
+    padding-left: 35px;
+    padding-bottom: 25px;
+    font-size: 29px;
+    font-weight: bold;
+
+}
+table td {
+    padding-left: 45px;
+    padding-bottom: 12px;
+    font-size: 19px;
+}
