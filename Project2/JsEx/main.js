@@ -52,23 +52,27 @@ const studentAges = [32, 28, 35, 28, 32, 40, 25, 26, 45, 35, 30];
 
 // let i = 0;
 // while(i < studentAges.length) {
-//     console.log(studentAges[i])
+//     //console.log(studentAges[i])
 //     if(studentAges[i] % 2 == 0) {
 //         console.log(studentAges[i]);
 //     }
 //     i++;
 // }
 
-// for(let i = 0; i < studentAges.length; i++) {
-//     console.log(studentAges[i]);
-//     if(studentAges[i] % 2 == 0) {
-//         console.log(studentAges[i]);
+/* Creating a new array called evenAges and then it is looping through the studentAges array and
+pushing all the even numbers into the evenAges array. */
+// let evenAges = [];
+// for (let i = 0; i < studentAges.length; i++) {
+//     console.log(studentAges[i])
+//     if(studentAges[i] % 2 === 0) {
+//         evenAges.push(studentAges[i]);
 //     }
 // }
+// console.log(evenAges);
 
 
 
-/** Functions*/
+/** Functions */
 // Ex 8 
 
 //### First approach ###
@@ -103,8 +107,70 @@ const studentAges = [32, 28, 35, 28, 32, 40, 25, 26, 45, 35, 30];
 
 // Ex 10
 
-const myArray = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
-function arrNum(array, index) {
-    return array[index];
-}
-console.log(arrNum(myArray,1));
+// const myArray = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
+// function arrNum(array, index) {
+//     return array[index];
+// }
+// console.log(arrNum(myArray,1));
+
+
+// Ex 11
+
+// let myArray = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
+// let sameNrArray = [];
+//
+// function repNr (arr) {
+//     arr.sort(function (a, b) {return a - b});
+//
+//     for(let i = 0; i < arr.length; i++) {
+//         //console.log(arr[i]);
+//         if(arr[i] == arr[i+1]){
+//             sameNrArray.push(arr[i]);
+//         }
+//     }
+//     // let i = 0;
+//     // while (i < arr.length) {
+//     //     if (arr[i] == arr[i+1]){
+//     //         sameNrArray.push(arr[i]);
+//     //     }
+//     //     i++;
+//     // }
+//     console.log(sameNrArray);
+// }
+// repNr(myArray);
+
+// Ex 12
+
+// let myColor = ["Red", "Green", "White", "Black"];
+//
+// function comeTogether(arr) {
+//     console.log(arr.join(" | "));
+// }
+//
+// comeTogether(myColor);
+
+
+/** Strings */
+// Ex 13
+
+// let x = 32443;
+// let text = x.toString();
+
+// First approach charAt() -> The charAt() method returns the character at a specified index (position) in a string
+// function stringRev(smth) {
+//     //Creating a loop to find iterate each element from the string, depending on it's length
+//     for (let i = smth.length - 1; i >= 0; i--) {
+//         console.log(smth.charAt(i)) ;
+//     }
+// }
+//
+// stringRev(text);
+
+// Second approach with property access -> If no character is found, [ ] returns undefined, while charAt() returns an empty string.
+// function stringRev(smth) {
+//     for( let i = smth.length - 1; i >= 0 ; i--) {
+//         console.log(smth[i]);
+//     }
+// }
+// stringRev(text);
+
