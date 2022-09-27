@@ -393,28 +393,57 @@ let number = "32443";
 
 // Ex 28
 
+//  First approach
+// Assuming a is everytime smaller then b
+// function tellOdd(a, b) {
+//     if (a % 2 == 0 && b % 2 != 0) {
+//         console.log(a += 1);
+//         for (let i = 0; i < Math.floor((b / 2) -1); i++) { 
+//             console.log(a += 2);
+//         }
+//     } else if (a % 2 == 0 && b % 2 == 0) {
+//         console.log(a += 1);
+//         for (let i = 0; i < Math.floor((b / 2) -2); i++) {   
+//             console.log(a += 2);
+//         } 
+//     } else if (a % 2 != 0 && b % 2 != 0) {
+//         console.log(a);
+//         for (let i = 1; i < b; i += 2) {
+//             console.log(a += 2);
+//         }
+//     } else if (a % 2 != 0 && b % 2 == 0) {
+//         console.log(a);
+//         for (let i = 1; i < b - 1; i += 2) {
+//             console.log(a += 2);
+//         }
+//     }
+// }
+// tellOdd(1, 27);
+
+// Second approach
+
 function tellOdd(a, b) {
-    if (a % 2 == 0 && b % 2 != 0) {
-        console.log(a += 1);
-        for (let i = 0; i < Math.floor((b / 2) -1); i++) { 
-            console.log(a += 2);
+    const myArray = [];
+    if (a < b) {
+        for (let i = a; i <= b; i++) {
+            myArray.push(i);
         }
-    } else if (a % 2 == 0 && b % 2 == 0) {
-        console.log(a += 1);
-        for (let i = 0; i < Math.floor((b / 2) -2); i++) {   
-            console.log(a += 2);
-        } 
-    } else if (a % 2 != 0 && b % 2 != 0) {
-        console.log(a);
-        for (let i = 1; i < b; i += 2) {
-            console.log(a += 2);
+        for (let i = 0; i < myArray.length; i++) {
+            if(myArray[i] % 2 != 0) {
+                console.log(myArray[i]);
+            }
         }
-    } else if (a % 2 != 0 && b % 2 == 0) {
-        console.log(a);
-        for (let i = 1; i < b - 1; i += 2) {
-            console.log(a += 2);
+    } else {
+        for (let i = b; i <= a; i++) {
+            myArray.push(i);
+        }
+        for (let i = 0; i < myArray.length; i++) {
+            if(myArray[i] % 2 != 0) {
+                console.log(myArray[i]);
+            }
         }
     }
-}
-tellOdd(1, 73);
 
+}
+
+tellOdd(2, 35);
