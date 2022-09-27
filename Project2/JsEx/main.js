@@ -394,8 +394,13 @@ let number = "32443";
 // Ex 28
 
 //  First approach
-// Assuming a is everytime smaller then b
 // function tellOdd(a, b) {
+        // if(a > b) {
+        //     let c = 0;
+        //     c = a;
+        //     a = b;
+        //     b = a;
+        // }
 //     if (a % 2 == 0 && b % 2 != 0) {
 //         console.log(a += 1);
 //         for (let i = 0; i < Math.floor((b / 2) -1); i++) { 
@@ -426,24 +431,18 @@ function tellOdd(a, b) {
     const myArray = [];
     if (a < b) {
         for (let i = a; i <= b; i++) {
-            myArray.push(i);
-        }
-        for (let i = 0; i < myArray.length; i++) {
-            if(myArray[i] % 2 != 0) {
-                console.log(myArray[i]);
+            if(i % 2 != 0) {
+                myArray.push(i);
             }
         }
     } else {
         for (let i = b; i <= a; i++) {
-            myArray.push(i);
-        }
-        for (let i = 0; i < myArray.length; i++) {
-            if(myArray[i] % 2 != 0) {
-                console.log(myArray[i]);
+            if(i % 2 != 0) {
+                myArray.push(i);
             }
         }
     }
-
+    console.log(myArray);
 }
 
-tellOdd(2, 35);
+tellOdd(15, 3);
