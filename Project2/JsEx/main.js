@@ -393,7 +393,7 @@ let number = "32443";
 
 // Ex 28
 
-//  First approach
+//  First approach - this approach is on vertical
 // function tellOdd(a, b) {
         // if(a > b) {
         //     let c = 0;
@@ -425,7 +425,7 @@ let number = "32443";
 // }
 // tellOdd(1, 27);
 
-// Second approach
+// Second approach - this approach is on horizontal
 
 function tellOdd(a, b) {
     const myArray = [];
