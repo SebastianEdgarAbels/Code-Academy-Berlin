@@ -34,14 +34,14 @@ console.log("Starting JavaScript...")
 
 
 
-// //Sorting an Array
-// //Ex 6
+//Sorting an Array
+//Ex 6
 
 // const myArray = ["Monica", "Jana", "Sandra", "Mirna", "Jacopo", "Viktor", "Dickson", "Haron", "Jost", "Ottavia", "Raul", "Lucas", "Kilian", "Sarah"];
 // console.log(myArray.sort());
 // console.log(myArray.length);
 // console.log(myArray[13]);
-//
+
 // for(let i = 0; i < myArray.length; i++) {
 //     console.log(myArray[i]);
 // }
@@ -75,18 +75,23 @@ pushing all the even numbers into the evenAges array. */
 /** Functions */
 // Ex 8 
 
-//### First approach ###
+// ### First approach ###
 // studentAges.sort(function(a,b){return a - b})
 // console.log(studentAges[0]);
 
-//### Second approach ###
+// // ### Second approach ###
 // var min = 1000;
-// for(let i = 0; i < studentAges.length; i++) {
-//     if(studentAges[i] < min) {
-//         min = studentAges[i];
+// function compNr (arr) {
+//     for(let i = 0; i < arr.length; i++) {
+//         if(arr[i] < min) {
+//             min = arr[i];
+//         }
 //     }
+//     console.log("The lowest number in the array studentAges is: " + min);
 // }
-// console.log("The lowest number in the array studentAges is: " + min);
+
+// compNr(studentAges);
+
 
 
 // Ex 9
@@ -111,17 +116,18 @@ pushing all the even numbers into the evenAges array. */
 // function arrNum(array, index) {
 //     return array[index];
 // }
-// console.log(arrNum(myArray,1));
+// console.log(arrNum(myArray,4));
 
 
 // Ex 11
 
-// let myArray = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
+// let myArray = [3,3,3,6,67,6,23,11,100,8,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
 // let sameNrArray = [];
-//
+
 // function repNr (arr) {
 //     arr.sort(function (a, b) {return a - b});
-//
+//     console.log(arr);
+
 //     for(let i = 0; i < arr.length; i++) {
 //         //console.log(arr[i]);
 //         if(arr[i] == arr[i+1]){
@@ -142,19 +148,19 @@ pushing all the even numbers into the evenAges array. */
 // Ex 12
 
 // let myColor = ["Red", "Green", "White", "Black"];
-//
+
 // function comeTogether(arr) {
 //     console.log(arr.join(" | "));
 // }
-//
+
 // comeTogether(myColor);
 
 
 /** Strings */
 // Ex 13
 
-let number = "32443";
-// let text = x.toString();
+// let number = "32443";
+// let text = number.toString();
 
 // function rev (smth) {
 //     console.log(smth.toString()  // toString turns it into a String
@@ -162,7 +168,7 @@ let number = "32443";
 //     .reverse()                   // reverse the elements in an Array
 //     .join("")                    // joins all elements of an Array into a String
 //     );
-                                    // btw in JS methods written like those here are red one after another not like in PHP where we start with the last one inside to the last one outside
+//                                     // btw in JS methods written like those here are red one after another not like in PHP where we start with the last one inside to the last one outside
 // }
 // rev(number)
 
@@ -175,9 +181,10 @@ let number = "32443";
 //     //Creating a loop to find iterate each element from the string, depending on it's length
 //     for (let i = smth.length - 1; i >= 0; i--) {
 //         console.log(smth.charAt(i)) ;
+//         #### console.log(smth.charAt(i) + smth.charAt(i-1));
 //     }
 // }
-//
+
 // stringRev(text);
 
 // Second approach with property access -> If no character is found, [ ] returns undefined, while charAt() returns an empty string.
@@ -194,16 +201,17 @@ let number = "32443";
 
 // let x = "webmaster";
 // let myArray = [];
-//
+
 // function alphaOrder (smth) {
 //     // console.log(smth);
 //     for (let i = 0; i < smth.length - 1; i++) {
 //         myArray.push(smth.charAt(i));
+//         // console.log(myArray);
 //     }
 //     let newArray = myArray.sort();
 //     console.log(newArray.join(""));
 // }
-//
+
 // alphaOrder(x);
 
 
@@ -226,11 +234,11 @@ let number = "32443";
 
 
 // Ex 16
-// let  x = "Web Development Tutorial";
-// const sentenceArray = x.split(" ");
-// // console.log('sentenceArray :>> ', sentenceArray);
-// let word = "";
-// // console.log('word :>> ', word.length);
+let  x = "Web Development Tutorial muambatarigua yasss";
+const sentenceArray = x.split(" ");
+// console.log('sentenceArray :>> ', sentenceArray);
+let word = "";
+// console.log('word :>> ', word.length);
 
 // function longestWord(smth) {
 //     // split the sentence into an array of words
@@ -395,12 +403,12 @@ let number = "32443";
 
 //  First approach - this approach is on vertical
 // function tellOdd(a, b) {
-        // if(a > b) {
-        //     let c = 0;
-        //     c = a;
-        //     a = b;
-        //     b = a;
-        // }
+//         if(a > b) {
+//             let c = 0;
+//             c = a;
+//             a = b;
+//             b = c;
+//         }
 //     if (a % 2 == 0 && b % 2 != 0) {
 //         console.log(a += 1);
 //         for (let i = 0; i < Math.floor((b / 2) -1); i++) { 
@@ -423,26 +431,26 @@ let number = "32443";
 //         }
 //     }
 // }
-// tellOdd(1, 27);
+// tellOdd(36, 2);
 
 // Second approach - this approach is on horizontal
 
-function tellOdd(a, b) {
-    const myArray = [];
-    if (a < b) {
-        for (let i = a; i <= b; i++) {
-            if(i % 2 != 0) {
-                myArray.push(i);
-            }
-        }
-    } else {
-        for (let i = b; i <= a; i++) {
-            if(i % 2 != 0) {
-                myArray.push(i);
-            }
-        }
-    }
-    console.log(myArray);
-}
+// function tellOdd(a, b) {
+//     const myArray = [];
+//     if (a < b) {
+//         for (let i = a; i <= b; i++) {
+//             if(i % 2 != 0) {
+//                 myArray.push(i);
+//             }
+//         }
+//     } else {
+//         for (let i = b; i <= a; i++) {
+//             if(i % 2 != 0) {
+//                 myArray.push(i);
+//             }
+//         }
+//     }
+//     console.log(myArray);
+// }
 
-tellOdd(15, 3);
+// tellOdd(15, 3);
