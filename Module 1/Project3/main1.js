@@ -51,37 +51,14 @@ function createCard() {
             buttonCardText.setAttribute("class", "myBtn");
             buttonCardText.setAttribute("id", i);
 
-
             buttonCardText.innerHTML = "...";
             
-            // Creating the div for the modal
-            // let divModal = document.createElement("div");
-            // divModal.setAttribute("id", "myModal");
-            // divModal.classList.add("modal");
-
-            // Creating the ModalContent
-            // let divModalContent = document.createElement("div");
-            // divModalContent.classList.add("modal-content");
-
             // Creating the span inside ModalContant
             let spanModal = document.createElement("span");
             spanModal.classList.add("close");
             spanModal.innerHTML = "&times;"
 
-            // Creating the p tag where to put the content that will be showned
-            // let pModalContent = document.createElement("p");
-            // imi apare doar indexul din for'ul parent pt fiecare in parte ar trebui sa fac un foreach pt fiecare in parte respectiv data[i].short_description, data[i].developer & data[i].publisher ?!
-            // forEach
-            // pModalContent.innerHTML = data[i].short_description + "<br>" + "<br>" + data[i].developer + "<br>" + data[i].publisher;
-            // console.log('pModalContent.innerHTML :>> ', pModalContent.innerHTML);
-
-            
-            
-            // divCardBody.appendChild(divModal);
-            // divModal.appendChild(divModalContent);
-            // divModalContent.appendChild(spanModal);
-            // divModalContent.appendChild(pModalContent);
-            // pCard.innerHTML = newVar;
+            pCard.innerHTML = newVar;
             pCard.appendChild(buttonCardText);
     
         } else {
@@ -132,79 +109,44 @@ function createCard() {
     } 
     getEvents()
 }
-
 createCard();
 
 
-
-/*####*/
-         
-
-
         function getEvents() {
-            let modal = document.getElementById("myModal");
+            // var modal = document.getElementById("myModal");
 
-            // Get the button that opens the modal
-            // var btn = document.getElementById("myBtn");
             var buttons = document.querySelectorAll(".myBtn")
-            const buttonId = document.querySelector(".myBtn").id
-                    console.log('buttonId :>> ', buttonId);
+            // const buttonId = document.querySelector(".myBtn").id
+                    // console.log('buttonId :>> ', buttonId);
 
-                    const modalButton = document.getElementById(`${buttonId}`)
-                    console.log('modalButton :>> ', modalButton);
+                    // const modalButton = document.getElementById(`${buttonId}`)
+                    // console.log('modalButton :>> ', modalButton);
 
-                    modalButton.addEventListener("click", () => openModal())
+                   
             // console.log('buttons :>> ', buttons);
             buttons.forEach((button)=> {
-                button.addEventListener("click", function(){
-                    console.log("this is button", button.id);
-                    // let id = button.id
-                    // console.log(data[id].short_description);
-                    
-                    showModal(button.id)
-                    
+                button.addEventListener("click", function(e){
+                    // console.log("this is button", button.id);
+                    console.log('e.target.id :>> ', e.target.id);
+                    showModal( e.target.id)
                 })
-                // When the user clicks the button, open the modal
-                button.onclick = function () {
-                    modal.style.display = "block";
-                }
             })
 
-            // // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-             
             
-
-            /* // // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            } */
-            // // When the user clicks on <span> (x), close the modal
-            const openModal = () => {
-                console.log('hi :>> ', hi);
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
         }
-
+   
 
         function showModal(buttonId) {
-            console.log('id number :>> ', buttonId);
+            // console.log('id number :>> ', buttonId);
             
-let modalContainer = document.getElementById("modalContainer")
-// const buttonId = document.querySelector(".myBtn").id
-console.log('buttonId :>> ', buttonId);
+            let modalContainer = document.getElementById("modalContainer")
+            // const buttonId = document.querySelector(".myBtn").id
+            console.log('buttonId :>> ', buttonId);
             // Creating the div for the modal
             let divModal = document.createElement("div");
             divModal.setAttribute("id", "myModal");
             divModal.classList.add("modal");
+            divModal.style.display = "block";
 
             // Creating the ModalContent
             let divModalContent = document.createElement("div");
@@ -217,27 +159,26 @@ console.log('buttonId :>> ', buttonId);
 
             // Creating the p tag where to put the content that will be showned
             let pModalContent = document.createElement("p");
-            // imi apare doar indexul din for'ul parent pt fiecare in parte ar trebui sa fac un foreach pt fiecare in parte respectiv data[i].short_description, data[i].developer & data[i].publisher ?!
-            // forEach
+            
+
             pModalContent.innerHTML = data[buttonId].short_description + "<br>" + "<br>" + data[buttonId].developer + "<br>" +data[buttonId].publisher;
-            console.log('pModalContent.innerHTML :>> ', pModalContent.innerHTML);
+            // console.log('pModalContent.innerHTML :>> ', pModalContent.innerHTML);
 
-              // Get the <span> element that closes the modal
-            //   var span = document.getElementsByClassName("close")[0];
-
-             
-            
-
+        
               // When the user clicks on <span> (x), close the modal
-              span.onclick = function() {
-                  modal.style.display = "none";
+              spanModal.onclick = function() {
+                  divModal.style.display = "none";
               }
-            
-            modalContainer.appendChild(divModal);
+
+              // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == divModal) {
+                    divModal.style.display = "none";
+                }
+            }
+        // console.log('divModal :>> ', divModal);
+        modalContainer.appendChild(divModal);
             divModal.appendChild(divModalContent);
             divModalContent.appendChild(spanModal);
             divModalContent.appendChild(pModalContent);
-            
-
-
-        }
+    }
