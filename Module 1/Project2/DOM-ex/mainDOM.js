@@ -60,4 +60,4 @@ function addMultTable(rows, cols) {
 
 
 
-addMultTable(4,3);
+addMultTable(5,4);
