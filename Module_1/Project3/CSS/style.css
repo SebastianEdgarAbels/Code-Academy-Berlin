@@ -65,5 +65,29 @@ body {
     height: 200px; */
     width: 200px !important;
     color:red !important;
+  }
 
-}
+  .show {
+    display: block;
+  }
+  .hide {
+    display: none;
+  }
+
+  .modal-body {
+    display: grid;
+    grid-template-columns: [first] 10rem [second] 25rem [third];
+  }
+  
+  select[name="Genre"] {
+    justify-self: start;
+    grid-column-start: [first] / [second];
+    width: 8rem;
+    height: 2.5rem;
+  }
+
+  input[type=checkbox] {
+    justify-self: end;
+    grid-column-start: [second] / [third];
+
+  }

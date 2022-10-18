@@ -1,21 +1,36 @@
-console.log('data :>> ', data);
-console.log('data :>> ', data[0].genre);
+// console.log('data :>> ', data);
+// console.log('data :>> ', data[0].genre);
+
+
+fetch("https://cab-cors-anywhere.herokuapp.com/https://www.freetogame.com/api/games").then((response) => {
+    // console.log('response :>> ', response);
+    return response.json();
+})
+.then((result) => {
+        // console.log('result :>> ', result);
+        let myData = result;
+        console.log('data :>> ', myData);
+        createCard(myData);
+        createOptionsVal(myData);
+        setFilterEventListeners(myData);        
+    })
+.catch((error) => console.log(error));
 
 
 
-
-
-function createCard() {
+function createCard(data) {
 
     let container = document.getElementById("cards-container")
+    container.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
+        
         let divCard = document.createElement("div");
         // let dataShortDescription = data[i].short_description;
 
         // divCard.setAttribute("class", "card")
         divCard.classList.add("card", "col-sm-3");
         divCard.setAttribute("style", "width: 18rem;");
-
+ 
         // Creating the img element
         let img = document.createElement("img");
         img.setAttribute("src", data[i].thumbnail)
@@ -28,7 +43,7 @@ function createCard() {
         divCardBody.classList.add("card-body");
         divCardBody.setAttribute("style", "height: 180px !important;");
         
-        //Creating the h5 tag
+        //Creating the h5 tag 
         let h5 = document.createElement("h5");
         h5.classList.add("card-title");
         h5.innerText = data[i].title; 
@@ -36,7 +51,6 @@ function createCard() {
 
         let pCard = document.createElement("p");
         pCard.classList.add("card-text");
-        
         
          
         const myArray = data[i].short_description.split(" ");
@@ -51,37 +65,14 @@ function createCard() {
             buttonCardText.setAttribute("class", "myBtn");
             buttonCardText.setAttribute("id", i);
 
-
             buttonCardText.innerHTML = "...";
             
-            // Creating the div for the modal
-            // let divModal = document.createElement("div");
-            // divModal.setAttribute("id", "myModal");
-            // divModal.classList.add("modal");
-
-            // Creating the ModalContent
-            // let divModalContent = document.createElement("div");
-            // divModalContent.classList.add("modal-content");
-
             // Creating the span inside ModalContant
             let spanModal = document.createElement("span");
             spanModal.classList.add("close");
             spanModal.innerHTML = "&times;"
 
-            // Creating the p tag where to put the content that will be showned
-            // let pModalContent = document.createElement("p");
-            // imi apare doar indexul din for'ul parent pt fiecare in parte ar trebui sa fac un foreach pt fiecare in parte respectiv data[i].short_description, data[i].developer & data[i].publisher ?!
-            // forEach
-            // pModalContent.innerHTML = data[i].short_description + "<br>" + "<br>" + data[i].developer + "<br>" + data[i].publisher;
-            // console.log('pModalContent.innerHTML :>> ', pModalContent.innerHTML);
-
-            
-            
-            // divCardBody.appendChild(divModal);
-            // divModal.appendChild(divModalContent);
-            // divModalContent.appendChild(spanModal);
-            // divModalContent.appendChild(pModalContent);
-            // pCard.innerHTML = newVar;
+            pCard.innerHTML = newVar;
             pCard.appendChild(buttonCardText);
     
         } else {
@@ -130,114 +121,190 @@ function createCard() {
         
         
     } 
-    getEvents()
+    getEvents(data)
 }
 
-createCard();
+
+function getEvents(data) {
+    var buttons = document.querySelectorAll(".myBtn")
+    buttons.forEach((button)=> {
+        button.addEventListener("click", function(e){
+            // console.log("this is button", button.id);
+            console.log('e.target.id :>> ', e.target.id);
+            showModal(data, e.target.id)
+        })
+    })
+}
+   
+
+function showModal(data,buttonId) {
+    // console.log('id number :>> ', buttonId);
+    // console.log('data :>> ', data);
+    
+    let modalContainer = document.getElementById("modalContainer")
+    // const buttonId = document.querySelector(".myBtn").id
+    console.log('buttonId :>> ', buttonId);
+    // Creating the div for the modal
+    let divModal = document.createElement("div");
+    divModal.setAttribute("id", "myModal");
+    divModal.classList.add("modal");
+    divModal.style.display = "block";
+
+    // Creating the ModalContent
+    let divModalContent = document.createElement("div");
+    divModalContent.classList.add("modal-content");
+
+    // Creating the span inside ModalContant
+    let spanModal = document.createElement("span");
+    spanModal.classList.add("close");
+    spanModal.innerHTML = "&times;"
+
+    // Creating the p tag where to put the content that will be showned
+    let pModalContent = document.createElement("p");
+    
+
+    pModalContent.innerHTML = data[buttonId].short_description + "<br>" + "<br>" + data[buttonId].developer + "<br>" +data[buttonId].publisher;
+    // console.log('pModalContent.innerHTML :>> ', pModalContent.innerHTML);
 
 
-
-/*####*/
-         
-
-
-        function getEvents() {
-            let modal = document.getElementById("myModal");
-
-            // Get the button that opens the modal
-            // var btn = document.getElementById("myBtn");
-            var buttons = document.querySelectorAll(".myBtn")
-            const buttonId = document.querySelector(".myBtn").id
-                    console.log('buttonId :>> ', buttonId);
-
-                    const modalButton = document.getElementById(`${buttonId}`)
-                    console.log('modalButton :>> ', modalButton);
-
-                    modalButton.addEventListener("click", () => openModal())
-            // console.log('buttons :>> ', buttons);
-            buttons.forEach((button)=> {
-                button.addEventListener("click", function(){
-                    console.log("this is button", button.id);
-                    // let id = button.id
-                    // console.log(data[id].short_description);
-                    
-                    showModal(button.id)
-                    
-                })
-                // When the user clicks the button, open the modal
-                button.onclick = function () {
-                    modal.style.display = "block";
-                }
-            })
-
-            // // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-             
-            
-
-            /* // // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            } */
-            // // When the user clicks on <span> (x), close the modal
-            const openModal = () => {
-                console.log('hi :>> ', hi);
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
+        // When the user clicks on <span> (x), close the modal
+        spanModal.onclick = function() {
+            divModal.style.display = "none";
         }
 
-
-        function showModal(buttonId) {
-            console.log('id number :>> ', buttonId);
-            
-let modalContainer = document.getElementById("modalContainer")
-// const buttonId = document.querySelector(".myBtn").id
-console.log('buttonId :>> ', buttonId);
-            // Creating the div for the modal
-            let divModal = document.createElement("div");
-            divModal.setAttribute("id", "myModal");
-            divModal.classList.add("modal");
-
-            // Creating the ModalContent
-            let divModalContent = document.createElement("div");
-            divModalContent.classList.add("modal-content");
-
-            // Creating the span inside ModalContant
-            let spanModal = document.createElement("span");
-            spanModal.classList.add("close");
-            spanModal.innerHTML = "&times;"
-
-            // Creating the p tag where to put the content that will be showned
-            let pModalContent = document.createElement("p");
-            // imi apare doar indexul din for'ul parent pt fiecare in parte ar trebui sa fac un foreach pt fiecare in parte respectiv data[i].short_description, data[i].developer & data[i].publisher ?!
-            // forEach
-            pModalContent.innerHTML = data[buttonId].short_description + "<br>" + "<br>" + data[buttonId].developer + "<br>" +data[buttonId].publisher;
-            console.log('pModalContent.innerHTML :>> ', pModalContent.innerHTML);
-
-              // Get the <span> element that closes the modal
-            //   var span = document.getElementsByClassName("close")[0];
-
-             
-            
-
-              // When the user clicks on <span> (x), close the modal
-              span.onclick = function() {
-                  modal.style.display = "none";
-              }
-            
-            modalContainer.appendChild(divModal);
-            divModal.appendChild(divModalContent);
-            divModalContent.appendChild(spanModal);
-            divModalContent.appendChild(pModalContent);
-            
-
-
+        // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == divModal) {
+            divModal.style.display = "none";
         }
+    }
+    // console.log('divModal :>> ', divModal);
+    modalContainer.appendChild(divModal);
+    divModal.appendChild(divModalContent);
+    divModalContent.appendChild(spanModal);
+    divModalContent.appendChild(pModalContent);
+}
+
+// toggleCards();
+
+// populating the dropdown with values from the array
+function createOptionsVal(datas) {
+    // select the element 
+    let selectVal = document.getElementById("idSelectGenre");
+    // make a foreach for accesing the property
+    
+    // map over the array and extract each and every element respetively, the property that I'm looking for => genre
+    let genres = datas.map((data) => {
+        return data.genre;
+    });
+
+    // eliminating the duplicates and sorting the values
+    const uniqueGenres = [...new Set(genres)].sort();
+    // console.log('uniqueGenre :>> ', uniqueGenres);
+    
+    uniqueGenres.forEach((genre) => {
+        // console.log('uniqueGenre :>> ', uniqueGenre);
+        // create the element options
+        let optionsGenerate = document.createElement("option");
+        // write the genre into HTML
+        optionsGenerate.innerHTML = genre;
+        optionsGenerate.value = genre;
+        // append the option to the parent
+        selectVal.appendChild(optionsGenerate); 
+    })
+}
+
+// Add event listeners for the dropdown & checkboxes
+
+function setFilterEventListeners(data) {
+    document.querySelector("#idSelectGenre").addEventListener("change", (e) => {
+        // console.log('event :>> ', e.target.value);
+        if(e.target.value !== "Genre") {
+            filterDropDown(data);
+        } else {
+            createCard(data);
+        } 
+    });
+    // document.querySelector(".pcCheckbox").addEventListener("change", (e) => {
+    //     console.log('e :>> ', e);
+    // });
+    // document.querySelector(".webCheckbox").addEventListener("change", (e) => {
+    //     console.log('e :>> ', e);
+    // });
+    /////////// instead of doing this logic from above, I select all by their input and loop them ///////////
+    const checkBoxes = document.querySelectorAll("input[type= 'checkbox']");
+    // console.log(' checked :>> ',  checkBoxes);
+    checkBoxes.forEach((checkbox) => {
+        checkbox.addEventListener("click", (e) => {
+            console.log('checked :>> ', e.target.value);
+            if(e.target.checked === true) {
+                switch (e.target.value) {
+                    case "PC (Windows)":
+                        filterCheckBoxes(data);
+                        break;
+                    case "Web Browser":
+                        filterCheckBoxes(data);
+                        break;
+                    case "PC (Windows), Web Browser":
+                        filterCheckBoxes(data);
+                        break;
+                } 
+                // filterCheckBoxes(data);
+            } else {
+                createCard(data);
+            }
+        })
+        
+    })
+    document.querySelector("#SubmitBut").addEventListener("click", (e) => {
+        // console.log('e :>> ', e);
+    });
+}
+
+
+  
+
+// Filter for Genre - Dropdown - 
+const filterDropDown = (data) => {
+    // console.log('data :>> ', data);
+    const dropDownValue = document.querySelector("#idSelectGenre").value;
+    // console.log('dropDownValue :>> ', dropDownValue);
+    // filter over the array of data .
+   
+    let filteredGenre = data.filter((dataGenre) => { 
+        return dataGenre.genre === dropDownValue; 
+    })
+    console.log('filteredGenre :>> ', filteredGenre);
+    // call the function createCard to populate with filtered elements
+    createCard(filteredGenre);
+};
+
+const filterCheckBoxes = (data) => {
+    // target all checkBoxes
+    // const checkBoxes = document.querySelectorAll("input[type= 'checkbox']");
+    // // create array with the values of the checked checkboxes
+    // let checkedCheckboxes = [];
+    // const checkBoxValue = checkBoxes.forEach((checkBox) => {
+    //     // console.log('checkBox :>> ', checkBox);
+    //     if(checkBox.checked === true) {
+    //         checkedCheckboxes.push(checkBox.value);
+    //         console.log('checkedCheckboxes :>> ', checkedCheckboxes);
+    //     }
+    // })
+    const checkBoxes = document.querySelectorAll("input[type= 'checkbox']:checked");
+    // checkBox is nodeList and not an array. An node list behave almost like an Array but I can't map over it. I can do a foreach, a for loop but not map over it
+    const valuesArray = Array.from(checkBoxes).map((checkBox) => {
+        console.log('checkBox.value :>> ', checkBox.value);
+        return checkBox.value;
+    })
+
+    const valuesCheckedBoxes = data.filter((filteredCheckedBox) => {
+        // const filteredVal = filteredCheckedBox.platform
+       return (valuesArray.includes(filteredCheckedBox.platform));
+    })
+    createCard(valuesCheckedBoxes);
+}
+
+
+
+
