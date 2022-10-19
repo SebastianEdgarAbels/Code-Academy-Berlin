@@ -79,6 +79,9 @@ body {
     grid-template-columns: [first] 10rem [second] 25rem [third];
   }
   
+  #idSelectGenre {
+    align-self: center;
+  }
   select[name="Genre"] {
     justify-self: start;
     grid-column-start: [first] / [second];
@@ -91,3 +94,60 @@ body {
     grid-column-start: [second] / [third];
 
   }
+
+  .btn-warning {
+    --bs-btn-line-height: 9px !important;
+  }
+ 
+  .col-sm-3 {
+    background-color:rgb(44,49,54) !important;
+  }
+
+  .list-group-item {
+    background-color:rgb(44,49,54) !important;
+  }
+
+  .card-title {
+    color:rgb(160, 160, 160) !important;
+  }
+
+  .card-text {
+    color:rgb(160, 160, 160) !important;
+  }
+ 
+  .list-group-item {
+    color:rgb(160, 160, 160) !important;
+  }
+
+
+  /* hier start the footer */
+.text-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  /* background-color: rgba(0, 0, 0, 0.2); */
+  color: rgb(160, 160, 160);
+  /* width: 10px */
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgb(160, 160, 160);
+  text-align: center;
+}
+
+.footerP {
+  padding-right: 5px;
+  text-align:left;
+}
+
+.text-center {
+  color: rgb(160, 160, 160);
+}

@@ -1,4 +1,4 @@
-h1, p {
+.header, .pEl {
     color: rgb(226, 136, 27);
     font-family: Chalkboard;
 }
@@ -11,14 +11,14 @@ h1, p {
     gap: 0.5em 0.5em;
 }
 
-h1 {
+.header {
     place-self: center;
     grid-row: 1 / 2;
     grid-column: 3 / 4;
     font-size: 3.5rem !important;
 }
 
-p {
+.pEl {
     place-self: center;
     grid-column: 3 / 4;
     grid-row: 2 / 3;

@@ -12,7 +12,8 @@ fetch("https://cab-cors-anywhere.herokuapp.com/https://www.freetogame.com/api/ga
         console.log('data :>> ', myData);
         createCard(myData);
         createOptionsVal(myData);
-        setFilterEventListeners(myData);        
+        setFilterEventListeners(myData);   
+        searchEvent(myData);     
     })
 .catch((error) => console.log(error));
 
@@ -62,8 +63,9 @@ function createCard(data) {
             
             // Creating the button for showing the whole text
             let buttonCardText = document.createElement("button");
-            buttonCardText.setAttribute("class", "myBtn");
+            buttonCardText.classList.add("myBtn", "btn", "btn-warning", "btn-sm");
             buttonCardText.setAttribute("id", i);
+            buttonCardText.setAttribute("type", "button");
 
             buttonCardText.innerHTML = "...";
             
@@ -219,11 +221,12 @@ function createOptionsVal(datas) {
 function setFilterEventListeners(data) {
     document.querySelector("#idSelectGenre").addEventListener("change", (e) => {
         // console.log('event :>> ', e.target.value);
-        if(e.target.value !== "Genre") {
-            filterDropDown(data);
-        } else {
-            createCard(data);
-        } 
+        // if(e.target.value !== "Genre") {
+        //     filterDropDown(data);
+        // } else {
+        //     createCard(data);
+        // } 
+        filterDropDown(data);
     });
     // document.querySelector(".pcCheckbox").addEventListener("change", (e) => {
     //     console.log('e :>> ', e);
@@ -236,23 +239,7 @@ function setFilterEventListeners(data) {
     // console.log(' checked :>> ',  checkBoxes);
     checkBoxes.forEach((checkbox) => {
         checkbox.addEventListener("click", (e) => {
-            console.log('checked :>> ', e.target.value);
-            if(e.target.checked === true) {
-                switch (e.target.value) {
-                    case "PC (Windows)":
-                        filterCheckBoxes(data);
-                        break;
-                    case "Web Browser":
-                        filterCheckBoxes(data);
-                        break;
-                    case "PC (Windows), Web Browser":
-                        filterCheckBoxes(data);
-                        break;
-                } 
-                // filterCheckBoxes(data);
-            } else {
-                createCard(data);
-            }
+            filterCheckBoxes(data);
         })
         
     })
@@ -271,15 +258,14 @@ const filterDropDown = (data) => {
     // console.log('dropDownValue :>> ', dropDownValue);
     // filter over the array of data .
    
-    let filteredGenre = data.filter((dataGenre) => { 
-        return dataGenre.genre === dropDownValue; 
-    })
-    console.log('filteredGenre :>> ', filteredGenre);
+    let filteredGenres = data.filter((singleGenre) => { 
+        return singleGenre.genre === dropDownValue || dropDownValue === "Genre";
+    })       
     // call the function createCard to populate with filtered elements
-    createCard(filteredGenre);
+    createCard(filteredGenres);
 };
 
-const filterCheckBoxes = (data) => {
+const filterCheckBoxes = (games) => {
     // target all checkBoxes
     // const checkBoxes = document.querySelectorAll("input[type= 'checkbox']");
     // // create array with the values of the checked checkboxes
@@ -293,18 +279,86 @@ const filterCheckBoxes = (data) => {
     // })
     const checkBoxes = document.querySelectorAll("input[type= 'checkbox']:checked");
     // checkBox is nodeList and not an array. An node list behave almost like an Array but I can't map over it. I can do a foreach, a for loop but not map over it
-    const valuesArray = Array.from(checkBoxes).map((checkBox) => {
-        console.log('checkBox.value :>> ', checkBox.value);
+    let valuesArray = Array.from(checkBoxes).map((checkBox) => {
+        // console.log('checkBox.value :>> ', typeof checkBox.value);
         return checkBox.value;
     })
-
-    const valuesCheckedBoxes = data.filter((filteredCheckedBox) => {
-        // const filteredVal = filteredCheckedBox.platform
-       return (valuesArray.includes(filteredCheckedBox.platform));
+    // let loopedValuesArray = "";
+    // for (let i in valuesArray) {
+    //     loopedValuesArray += valuesArray[i];
+    //     console.log('typeof :>> ', valuesArray[i]);
+    // }
+    const valuesCheckedBoxes = games.filter((game) => {
+        let isincl = false
+        valuesArray.forEach((value) => {
+            if (value === game.platform) {
+                isincl =true
+            }
+        })
+        // console.log('valuesArray :>> ',typeof valuesArray.toString());
+        // console.log('typeof filteredCheckedBox.platform:>> ', typeof filteredCheckedBox.platform);
+        // console.log('typeof valuesArray:>> ', loopedValuesArray);
+        //  return valuesArray.includes(filteredCheckedBox.platform);  
+        return (valuesArray.includes(game.platform) || valuesArray.length  === 0);
     })
+    // console.log('valuesCheckedBoxes :>> ', valuesCheckedBoxes);
     createCard(valuesCheckedBoxes);
 }
 
 
 
 
+    
+
+function searchEvent (data) {
+    let search = document.getElementById("search");
+    // console.log('search :>> ', search);
+    let searchInput = "";
+   
+    search.addEventListener("input", (e) => {
+        searchInput = e.target.value.toLocaleLowerCase();
+        // console.log('e :>> ', searchInput);
+        filterByInput(data,searchInput)  
+    })
+
+
+    search.addEventListener("keyup", (e) => {
+        // console.log('event :>> ', e);
+        if( e.key === "Enter") {
+        // console.log('e :>> ', e.target.value);
+        // console.log('event :>> ', e);
+        // console.log('searchInput2Lower :>> ', searchInput);
+        filterByInput(data,searchInput)  
+        }
+    })
+
+}
+
+function filterByInput(data,searchInput) {
+    // console.log('data, searchInput :>> ', data, searchInput);
+   
+    let filteredData=  data.filter((dataProperty) => {
+    // console.log('dataProp :>> ', dataProperty);
+        let dataPropertyTitelToLower = dataProperty.title.toLocaleLowerCase();
+            return dataPropertyTitelToLower.includes(searchInput);
+        })
+    // console.log('filteredData :>> ', filteredData);
+    createCard(filteredData);
+}
+
+
+/// dynamic date for the footer
+function footerDate() {
+    // let footer = document.querySelector("footer");
+    // let divFooter = document.querySelector("text-center");
+    let pDate = document.getElementById("dateInsert");
+    let date = new Date();
+    let year = date.getFullYear();
+    if(year > 2022) {
+        pDate.innerHTML = "-" + year;
+    }
+
+    // footer.appendChild(divFooter);
+    // divFooter.appendChild(pDate);
+}
+footerDate();
