@@ -4,11 +4,14 @@ import Cards from "./Cards";
 // import SearchAppBar from "./navBar/SearchAppBar.js";
 
 function Characters({ search, pageNr }) {
+  // console.log("pageNr", pageNr);
   const [characters, setCharacters] = useState([]);
   const [error, setError] = useState(null);
 
   const fetchCharacter = () => {
-    const url = "https://rickandmortyapi.com/api/character/?page=",{pageNr};
+    // console.log("this page is :>>>", pageNr);
+    const url = `https://rickandmortyapi.com/api/character/?page=${pageNr}`;
+    // console.log("url :>> ", url);
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
@@ -24,7 +27,7 @@ function Characters({ search, pageNr }) {
 
   useEffect(() => {
     fetchCharacter();
-  }, []);
+  }, [pageNr]);
 
   // let setSearch = (getInput) => {
   //   // console.log("getInput :>> ", getInput);

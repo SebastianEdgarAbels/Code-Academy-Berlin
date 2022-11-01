@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import BasicPagination from "./components/BasicPagination";
 import SearchAppBar from "./components/navBar/SearchAppBar";
@@ -19,9 +19,10 @@ function App() {
   };
 
   const getPaginationInput = (event) => {
-    console.log("event", event);
+    // console.log("event", event);
     setPageNr(event);
   };
+
   // console.log("getInputForPagination", getPaginationInput);
 
   return (
