@@ -14,17 +14,31 @@ fetch("https://cab-cors-anywhere.herokuapp.com/https://www.freetogame.com/api/ga
         createOptionsVal(myData);
         setFilterEventListeners(myData);   
         searchEvent(myData);  
+        // previousPage(myData);  
+        // nextPage(myData); 
     })
 .catch((error) => console.log(error));
 
+// dropdown for selecting the number of elements
+// create eventListeners for that dropwdown
+// then make a condition if dropdown is ... then show me only the value selected
 
-function createCard(data) {
 
+
+
+function createCard(games) {
     let container = document.getElementById("cards-container")
     container.innerHTML = "";
-    for (let i = 0; i < data.length; i++) {
+    
+    
+    // for (x in games) {
+    //     singleGame = games[x];
+    //     console.log('singleGame :>> ', singleGame);
+    // }
+    
+    for (let i = 0; i <= games.length; i++) {
         
-        let divCard = document.createElement("div");
+        let divCard = document.createElement("div"); 
         // let dataShortDescription = data[i].short_description;
 
         // divCard.setAttribute("class", "card")
@@ -33,8 +47,8 @@ function createCard(data) {
  
         // Creating the img element
         let img = document.createElement("img");
-        img.setAttribute("src", data[i].thumbnail)
-        img.setAttribute("alt", data[i].title);
+        img.setAttribute("src", games[i].thumbnail)
+        img.setAttribute("alt", games[i].title);
         img.classList.add("card-img-top");
 
 
@@ -46,16 +60,16 @@ function createCard(data) {
         //Creating the h5 tag 
         let h5 = document.createElement("h5");
         h5.classList.add("card-title");
-        h5.innerText = data[i].title; 
+        h5.innerText = games[i].title; 
                 
 
         let pCard = document.createElement("p");
         pCard.classList.add("card-text");
         
          
-        const myArray = data[i].short_description.split(" ");
+        const myArray = games[i].short_description.split(" ");
         if(myArray.length > 11) {
-            let newVar = data[i].short_description.split(" ")
+            let newVar = games[i].short_description.split(" ")
             .slice(0, 10)
             .join(" ")
             ; 
@@ -77,11 +91,11 @@ function createCard(data) {
             pCard.appendChild(buttonCardText);
     
         } else {
-            data[i].short_description.split(" ")
+            games[i].short_description.split(" ")
             .slice(0, 10)
             .join(" ")
             ;
-            pCard.innerHTML = data[i].short_description; 
+            pCard.innerHTML = games[i].short_description; 
         }
         
 
@@ -91,7 +105,7 @@ function createCard(data) {
         
         let liGroup = document.createElement("li");
         liGroup.classList.add("list-group-item");
-        liGroup.innerHTML = data[i].genre + "<br>" /*+ data[i].developer + "<br>"*/ + data[i].platform + "<br>" + "release date: " + data[i].release_date;
+        liGroup.innerHTML = games[i].genre + "<br>" /*+ games[i].developer + "<br>"*/ + games[i].platform + "<br>" + "release date: " + games[i].release_date;
         
 
         let divCardBody1 = document.createElement("div");
@@ -99,12 +113,12 @@ function createCard(data) {
 
         let a1 = document.createElement("a");
         a1.classList.add("btn", "btn-primary");
-        a1.setAttribute("href", data[i].game_url);
+        a1.setAttribute("href", games[i].game_url);
         a1.innerText = "Free";
 
         let a2 = document.createElement("a");
         a2.classList.add("btn", "btn-primary");
-        a2.setAttribute("href", data[i].freetogame_profile_url);
+        a2.setAttribute("href", games[i].freetogame_profile_url);
         a2.innerText = "Free2Game website";
 
 
@@ -121,9 +135,27 @@ function createCard(data) {
         divCardBody1.appendChild(a2);
         
         
-    } 
-    getEvents(data)
+    }
+    
+    getEvents(games);
 }
+
+
+// function previousPage(games) {
+//     if(currentPage > 1) {
+//         currentPage--;
+//         createCard(games);
+//     }
+// }
+// previousPage();
+
+// function nextPage(games) {
+//     if((currentPage * pageSize) < games.length) {
+//         currentPage++;
+//         createCard(games);
+//     }
+// }
+// nextPage();
 
 
 function getEvents(data) {
@@ -154,7 +186,6 @@ function showModal(data,buttonId) {
     // Creating the ModalContent
     let divModalContent = document.createElement("div");
     divModalContent.classList.add("modal-content");
-    divModalContent.setAttribute("id", "ModalContent");
 
     // Creating the span inside ModalContant
     let spanModal = document.createElement("span");
@@ -187,7 +218,7 @@ function showModal(data,buttonId) {
     divModalContent.appendChild(pModalContent);
 }
 
-
+// toggleCards();
 
 // populating the dropdown with values from the array
 function createOptionsVal(games) {
@@ -351,3 +382,33 @@ function footerDate() {
     // divFooter.appendChild(pDate);
 }
 footerDate();
+
+
+function itemsPerPageEvent () {
+    let limitation = document.getElementById("Items");
+    // console.log('limitation :>> ', limitation);
+    limitation.addEventListener("change", (e) => {
+        console.log('limitation :>> ', limitation.value);
+        console.log('event :>> ', e);
+
+    })
+    // itemPerPage();
+}
+itemsPerPageEvent ();
+
+// function itemPerPage () {
+//     let limitation = document.getElementById("Items");
+//     // console.log('limitation :>> ', limitation);
+// //     if(limitation === true )
+// }
+
+
+// let pageSize = 12;
+// let currentPage = 1;
+// let singleGame = "";
+
+// games.filter((row, index) => {
+//     let start = (pageSize - 1) * pageSize;
+//     let end = currentPage * pageSize; 
+//     if(index >= start && index < end) return true
+// });

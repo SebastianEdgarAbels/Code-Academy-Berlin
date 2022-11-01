@@ -1,5 +1,5 @@
 .header, .pEl {
-    color: rgb(226, 136, 27);
+    color: rgb(160, 160, 160);;
     font-family: Chalkboard;
 }
 
@@ -7,7 +7,7 @@
     display: grid;
     justify-items: center;
     grid-template-columns: [first] 5em [line2] 5em [line3] auto [col4-start] 5em [five] 5em [end];
-    grid-template-rows: [row1-start] 15em [row1-end] 30em [third-line];
+    grid-template-rows: [row1-start] 15em [row1-end] 30em [third-line] 25em [fourth-line];
     gap: 0.5em 0.5em;
 }
 
@@ -19,11 +19,12 @@
 }
 
 .pEl {
-    place-self: center;
+    place-self: top;
     grid-column: 3 / 4;
     grid-row: 2 / 3;
     font-size: 1.5rem;
     text-align: justify;
     text-indent: 5rem;
     margin: 0.5em;
-}
+} 
+
