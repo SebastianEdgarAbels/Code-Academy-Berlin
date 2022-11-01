@@ -2,8 +2,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr [col-start]);
   grid-template-rows: repeat(4 1fr);
-  border: 10px solid #ccc;
-  gap: 15px;
+  /* border: 10px solid #ccc; */
+  gap: 25px;
 }
 
 .flip-card {
@@ -11,6 +11,7 @@
   width: 300px;
   height: 300px;
   perspective: 1000px;
+  justify-self: center;
   /*  */
   border: 5px solid lightBlue;
   border-radius: 10px;
