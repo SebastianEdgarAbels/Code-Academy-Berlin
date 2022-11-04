@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Cards from "./Cards.js";
 
 function Items() {
   const [games, setGames] = useState();
@@ -10,7 +11,7 @@ function Items() {
         "https://cab-cors-anywhere.herokuapp.com/https://www.freetogame.com/api/games";
       const response = await fetch(url);
       const results = await response.json();
-      // console.log("results :>> ", results);
+      console.log("results :>> ", results);
       setGames(results);
     } catch (error) {
       setError(error.message);
@@ -24,9 +25,15 @@ function Items() {
 
   return (
     <div>
-      {games.map((game, i) => {
-        return <div key={i}>`${game}`</div>;
-      })}
+      {games &&
+        games.map((game, i) => {
+          return (
+            <div key={i}>
+              {" "}
+              <Cards game={game} />
+            </div>
+          );
+        })}
       {error && <p>${error}</p>}
     </div>
   );

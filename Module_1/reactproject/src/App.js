@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <h1>Bla bla blah</h1>
+      <h1>APP js Container</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="register" element={<Register />} />
