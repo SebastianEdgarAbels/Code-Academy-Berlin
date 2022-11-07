@@ -4,7 +4,9 @@ import { GamesContext } from "../context/gamesContext.js";
 import Cards from "./Cards.js";
 
 function Items() {
-  const { games, error, fetchGamesAsync } = useContext(GamesContext);
+  // hier is imported the context I create
+  const { games, error, fetchGamesAsync, search } = useContext(GamesContext);
+  console.log("games :>> ", search);
 
   useEffect(() => {
     fetchGamesAsync();
@@ -13,14 +15,18 @@ function Items() {
   return (
     <div>
       {games &&
-        games.map((game, i) => {
-          return (
-            <div key={i}>
-              {" "}
-              <Cards game={game} />
-            </div>
-          );
-        })}
+        games
+          .filter((game) => {
+            return game.title.toLowerCase().includes(search);
+          })
+          .map((game, i) => {
+            return (
+              <div key={i}>
+                {" "}
+                <Cards game={game} />
+              </div>
+            );
+          })}
       {error && <p>${error}</p>}
     </div>
   );

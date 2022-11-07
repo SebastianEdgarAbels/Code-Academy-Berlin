@@ -29,11 +29,13 @@ function Characters({ search, pageNr }) {
     fetchCharacter();
   }, [pageNr]);
 
+  ///// ### 1 way to do it ### /////
   // let setSearch = (getInput) => {
   //   // console.log("getInput :>> ", getInput);
   //   setGetInput(getInput.toLowerCase());
   // };
 
+  ///// ### another way to do it ### /////
   // const filteredResultValues = () => {
   //   // if (search === "") {
   //   //   return characters;
@@ -48,6 +50,7 @@ function Characters({ search, pageNr }) {
 
   return (
     <>
+      {/* ///// ### and another way to do it ### ///// */}
       {characters &&
         characters
           .filter((character) => {

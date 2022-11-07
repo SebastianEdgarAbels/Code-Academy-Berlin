@@ -11,9 +11,10 @@ import { GamesContextProvider } from "./context/gamesContext.js";
 function App() {
   return (
     <div className="App">
-      <Nav />
-      <h1>APP js Container</h1>
       <GamesContextProvider>
+        <Nav />
+        <h1>APP js Container</h1>
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="register" element={<Register />} />
