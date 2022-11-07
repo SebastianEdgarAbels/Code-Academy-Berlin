@@ -18,7 +18,7 @@ function Nav() {
       <NavLink to="/">HOME</NavLink> | <NavLink to="/Login">LogIn</NavLink> |{" "}
       <NavLink to="/Register">Register</NavLink>
       <Stack spacing={3} sx={{ width: 500 }}>
-        <Autocomplete
+        {/* <Autocomplete
           multiple
           id="tags-outlined"
           options={top100Films}
@@ -32,7 +32,7 @@ function Nav() {
               placeholder="Favorites"
             />
           )}
-        />
+        /> */}
       </Stack>
     </nav>
   );

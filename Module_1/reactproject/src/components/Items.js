@@ -1,23 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { GamesContext } from "../context/gamesContext.js";
+
 import Cards from "./Cards.js";
 
 function Items() {
-  const [games, setGames] = useState();
-  const [error, setError] = useState(null);
-
-  const fetchGamesAsync = async () => {
-    try {
-      const url =
-        "https://cab-cors-anywhere.herokuapp.com/https://www.freetogame.com/api/games";
-      const response = await fetch(url);
-      const results = await response.json();
-      console.log("results :>> ", results);
-      setGames(results);
-    } catch (error) {
-      setError(error.message);
-      // console.log("error :>> ", error);
-    }
-  };
+  const { games, error, fetchGamesAsync } = useContext(GamesContext);
 
   useEffect(() => {
     fetchGamesAsync();
