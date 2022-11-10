@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { GamesContext } from "../context/gamesContext.js";
 
 import Cards from "./Cards.js";

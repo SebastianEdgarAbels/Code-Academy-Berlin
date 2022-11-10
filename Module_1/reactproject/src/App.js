@@ -7,8 +7,11 @@ import Fav from "./views/Fav.js";
 import Nav from "./components/Nav.js";
 import Nothing2see from "./views/Nothing2see.js";
 import { GamesContextProvider } from "./context/gamesContext.js";
+import View from "./views/View";
+import { app } from "./config";
 
 function App() {
+  console.log("app :>> ", app);
   return (
     <div className="App">
       <GamesContextProvider>
@@ -20,6 +23,7 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="fav" element={<Fav />} />
+          <Route path="/details/:id" element={<View />} />
           <Route path="*" element={<Nothing2see />} />
         </Routes>
       </GamesContextProvider>

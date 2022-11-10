@@ -10,7 +10,8 @@ import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { GamesContext } from "../context/gamesContext.js";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import "./Nav.css";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -19,6 +20,7 @@ const Search = styled("div")(({ theme }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
+
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
@@ -56,6 +58,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function ButtonAppBar() {
   const { getInput } = React.useContext(GamesContext);
+  const location = useLocation();
+  // console.log("location", location);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -73,22 +77,26 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <NavLink to="/">HOME</NavLink> |{" "}
             <NavLink to="/Login">LogIn</NavLink> |{" "}
-            <NavLink to="/Register">Register</NavLink>
+            {/* <NavLink to="/Register">Register</NavLink> */}
           </Typography>
           {/* <Button color="inherit">Login</Button> */}
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              onChange={(e) => {
-                // console.log(e.target.value);
-                getInput(e.target.value.toLocaleLowerCase());
-              }}
-            />
-          </Search>
+          {location.pathname === "/" && (
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+
+              <StyledInputBase
+                className="searchBar"
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+                onChange={(e) => {
+                  // console.log(e.target.value);
+                  getInput(e.target.value.toLocaleLowerCase());
+                }}
+              />
+            </Search>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

@@ -11,6 +11,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 import { IconButton, ImageList, ImageListItemBar } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Cards({ game }) {
   return (
@@ -38,10 +39,12 @@ function Cards({ game }) {
             </CardContent> */}
 
             <div className="back">
-              <div className="inner">
-                <p>{game.title}</p>
-                <span>{game.genre} </span>
-              </div>
+              <Link to={`/details/${game.id}`}>
+                <div className="inner">
+                  <p>{game.title}</p>
+                  <span>{game.genre} </span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
