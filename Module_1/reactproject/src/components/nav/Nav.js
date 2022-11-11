@@ -2,16 +2,16 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
-import { GamesContext } from "../context/gamesContext.js";
-import { NavLink, useLocation } from "react-router-dom";
+import { GamesContext } from "../../context/gamesContext.js";
+import { Link, useLocation } from "react-router-dom";
 import "./Nav.css";
+import Menu from "@mui/material/Menu";
+import { MenuItem } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -60,6 +60,15 @@ export default function ButtonAppBar() {
   const { getInput } = React.useContext(GamesContext);
   const location = useLocation();
   // console.log("location", location);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -71,16 +80,37 @@ export default function ButtonAppBar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
           >
-            <MenuIcon />
+            <MenuIcon></MenuIcon>
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <NavLink to="/">HOME</NavLink> |{" "}
-            <NavLink to="/Login">LogIn</NavLink> |{" "}
-            {/* <NavLink to="/Register">Register</NavLink> */}
-          </Typography>
-          {/* <Button color="inherit">Login</Button> */}
-          {location.pathname === "/" && (
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem onClick={handleClose}>
+              {" "}
+              <Link to="/">Start</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link to="/Home">Games</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link to="/Login">LogIn</Link>
+            </MenuItem>
+          </Menu>
+
+          {location.pathname === "/Home" && (
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />

@@ -1,7 +1,10 @@
 import { Button, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../context/authContext.js";
 
 function Register() {
+  const { register } = useContext(AuthContext);
+  console.log("register", register);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -42,12 +45,12 @@ function Register() {
       <br />
       <br />
 
-      <TextField
+      {/* <TextField
         id="outlined-password-input"
         label="Confirm password"
         type="password"
         // autoComplete="current-password"
-      />
+      /> */}
       <br />
       <br />
       {/* <form action="" method="post"> */}
