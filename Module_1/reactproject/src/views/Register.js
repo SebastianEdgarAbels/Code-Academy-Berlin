@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, styled, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/authContext.js";
 
@@ -21,27 +21,46 @@ function Register() {
     register(email, password);
   };
 
+  const ValidationTextField = styled(TextField)({
+    "& input:valid + fieldset": {
+      borderColor: "#009688",
+      borderWidth: 2,
+    },
+    "& input:invalid + fieldset": {
+      borderColor: "#80cbc4",
+      borderWidth: 2,
+    },
+    ".css-1v4qvbo-MuiFormLabel-root-MuiInputLabel-root": {
+      color: "#009688",
+    },
+    // ".css-19285mc-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
+    //   color: "#ffff00",
+    // },
+  });
+
   return (
     <>
-      <Typography variant="h5" componetn="h2">
+      <Typography variant="h5" component="h2" color="#009688">
         Register u smartpants
       </Typography>
       <br />
-      <TextField
+      <ValidationTextField
         id="outlined-basic"
         label="email"
         variant="outlined"
         value={email}
+        color="secondary"
         onChange={handleEmailChange}
         autoComplete="off"
       />
       <br />
       <br />
-      <TextField
+      <ValidationTextField
         id="outlined-password-input"
         label="Password"
         type="password"
         value={password}
+        color="secondary"
         onChange={handlePasswordChange}
         autoComplete="off"
         // autoComplete="current-password"
@@ -61,6 +80,7 @@ function Register() {
         type="submit"
         variant="outlined"
         onClick={handleRegister}
+        style={{ color: "#009688", borderColor: "#009688" }}
       >
         Register
       </Button>

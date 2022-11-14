@@ -90,7 +90,7 @@ export default function ButtonAppBar() {
               alt="pic"
               width={55}
               height={55}
-              style={{ borderRadius: "40%" }}
+              style={{ borderRadius: "45%" }}
             />
           </IconButton>
           <Menu

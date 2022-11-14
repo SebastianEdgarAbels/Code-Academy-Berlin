@@ -1,12 +1,12 @@
 import { ThemeProvider } from "@emotion/react";
 import { createTheme, Typography } from "@mui/material";
-import { green } from "@mui/material/colors";
+import { teal } from "@mui/material/colors";
 import React from "react";
 
 const theme = createTheme({
   typography: {
     body: {
-      color: green[500],
+      color: teal[500],
     },
   },
 });
@@ -18,7 +18,7 @@ export default function StartPage() {
   return (
     <>
       <div>
-        <img src={imagePath} alt={imageAlt} />
+        <img src={imagePath} alt={imageAlt} style={{ borderRadius: "45%" }} />
       </div>
       <br />
       <br />
@@ -26,9 +26,23 @@ export default function StartPage() {
       <ThemeProvider theme={theme}>
         <Typography variant="body">
           This Website is made with the API from{" "}
-          <a href="https://www.freetogame.com/">freetogame</a> and was made for
-          learning purposes. This project was made with use of React, Material
-          UI, Firebase/Firestore.
+          <a
+            href="https://www.freetogame.com/"
+            style={{
+              textDecoration: "none",
+              color: "yellow",
+              // ":hover": "#ff9800",
+
+              ":hover": {
+                textDecoration: "underline",
+                // background: "#ff9800",
+              },
+            }}
+          >
+            freetogame
+          </a>{" "}
+          and was made for learning purposes. This project was made with use of
+          React, Material UI, Firebase/Firestore.
         </Typography>
       </ThemeProvider>
     </>

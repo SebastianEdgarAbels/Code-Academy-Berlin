@@ -88,11 +88,14 @@ function Login() {
       <Typography color="#009688">Forgot your password?</Typography>
 
       {/* <input type="submit" value="submit" onClick={handleLogin} /> */}
+
       <Button
         sx={{ mt: 1, mr: 1 }}
         type="submit"
         variant="outlined"
+        // color="secondary"
         onClick={handleLogin}
+        style={{ color: "#009688", borderColor: "#009688" }}
       >
         Submit
       </Button>
