@@ -6,3 +6,7 @@
 /* .searchBar {
   visibility: hidden;
 } */
+.StyledInputBase {
+  display: flex;
+  align-self: right;
+}

@@ -23,7 +23,9 @@ function Register() {
 
   return (
     <>
-      <div>Register u smartpants</div>
+      <Typography variant="h5" componetn="h2">
+        Register u smartpants
+      </Typography>
       <br />
       <TextField
         id="outlined-basic"
@@ -31,6 +33,7 @@ function Register() {
         variant="outlined"
         value={email}
         onChange={handleEmailChange}
+        autoComplete="off"
       />
       <br />
       <br />
@@ -40,6 +43,7 @@ function Register() {
         type="password"
         value={password}
         onChange={handlePasswordChange}
+        autoComplete="off"
         // autoComplete="current-password"
       />
       <br />
@@ -51,12 +55,15 @@ function Register() {
         type="password"
         // autoComplete="current-password"
       /> */}
-      <br />
-      <br />
-      {/* <form action="" method="post"> */}
-      {/* <input type="submit" value="submit" /> */}
-      {/* </form> */}
-      <Button onClick={handleRegister}> Register</Button>
+
+      <Button
+        sx={{ mt: 1, mr: 1 }}
+        type="submit"
+        variant="outlined"
+        onClick={handleRegister}
+      >
+        Register
+      </Button>
     </>
   );
 }

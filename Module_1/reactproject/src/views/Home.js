@@ -5,8 +5,7 @@ import "./Home.css";
 function Home() {
   return (
     <div className="homeView">
-      Home Container
-      <p>Free2Games</p>
+      <p></p>
       <Items />
     </div>
   );

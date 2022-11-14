@@ -21,7 +21,7 @@ function App() {
       <AuthContextProvider>
         <GamesContextProvider>
           <Nav />
-          <h1>APP js Container</h1>
+          <h1>Free Games</h1>
 
           <Routes>
             <Route path="/" element={<StartPage />} />

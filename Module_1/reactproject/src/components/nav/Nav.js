@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
@@ -86,7 +85,13 @@ export default function ButtonAppBar() {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            <MenuIcon></MenuIcon>
+            <img
+              src="/images/face.ico"
+              alt="pic"
+              width={55}
+              height={55}
+              style={{ borderRadius: "40%" }}
+            />
           </IconButton>
           <Menu
             id="basic-menu"
@@ -98,15 +103,31 @@ export default function ButtonAppBar() {
             }}
           >
             <MenuItem onClick={handleClose}>
-              {" "}
-              <Link to="/">Start</Link>
+              <Link to="/" style={{ textDecoration: "none", color: "green" }}>
+                Start
+              </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link to="/Home">Games</Link>
+              <Link
+                to="/Home"
+                style={{ textDecoration: "none", color: "green" }}
+              >
+                Games
+              </Link>
             </MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem
+              onClick={handleClose}
+              style={{ textDecoration: "none", color: "green" }}
+            >
+              My account
+            </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link to="/Login">LogIn</Link>
+              <Link
+                to="/Login"
+                style={{ textDecoration: "none", color: "green" }}
+              >
+                LogIn
+              </Link>
             </MenuItem>
           </Menu>
 
