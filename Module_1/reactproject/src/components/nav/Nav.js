@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,6 +11,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./Nav.css";
 import Menu from "@mui/material/Menu";
 import { MenuItem } from "@mui/material";
+import { AuthContext } from "../../context/authContext.js";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -56,10 +57,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function ButtonAppBar() {
-  const { getInput } = React.useContext(GamesContext);
+  const { getInput } = useContext(GamesContext);
+  const { user, logout } = useContext(AuthContext);
   const location = useLocation();
   // console.log("location", location);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -115,20 +117,26 @@ export default function ButtonAppBar() {
                 Games
               </Link>
             </MenuItem>
-            <MenuItem
-              onClick={handleClose}
-              style={{ textDecoration: "none", color: "green" }}
-            >
-              My account
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link
-                to="/Login"
-                style={{ textDecoration: "none", color: "green" }}
-              >
-                LogIn
-              </Link>
-            </MenuItem>
+            {user ? (
+              <button onClick={logout()}>Logout</button>
+            ) : (
+              <>
+                <MenuItem
+                  onClick={handleClose}
+                  style={{ textDecoration: "none", color: "green" }}
+                >
+                  My account
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link
+                    to="/Login"
+                    style={{ textDecoration: "none", color: "green" }}
+                  >
+                    LogIn
+                  </Link>
+                </MenuItem>
+              </>
+            )}
           </Menu>
 
           {location.pathname === "/Home" && (

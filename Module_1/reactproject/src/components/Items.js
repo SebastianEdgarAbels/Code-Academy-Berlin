@@ -6,7 +6,7 @@ import Cards from "./Cards.js";
 function Items() {
   // hier is imported the context I create
   const { games, error, fetchGamesAsync, search } = useContext(GamesContext);
-  console.log("games :>> ", games);
+  // console.log("games :>> ", games);
 
   useEffect(() => {
     fetchGamesAsync();

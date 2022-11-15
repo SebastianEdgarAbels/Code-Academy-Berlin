@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { Grid, Paper, Typography } from "@mui/material";
-import { Container } from "@mui/system";
-import Image from "../components/Image";
 import TitleImage from "../components/TitleImage";
+import "./View.css";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { Button } from "@mui/material";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import StarRateIcon from "@mui/icons-material/StarRate";
 
 const View = () => {
   const location = useLocation();
@@ -35,75 +37,124 @@ const View = () => {
   return (
     <>
       {details && (
-        <Container>
-          <Grid container>
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Paper>
-                <Image
-                  image={details.thumbnail}
-                  gameTitle={details.title}
-                  auth={details.developer}
+        <div className="containerView">
+          <div id="img">
+            <img src={details.thumbnail} alt={details.title} />
+            {/* <div>
+              <p>{details.title}</p>
+              <p>{details.developer}</p>
+            </div> */}
+            <div className="starButton">
+              <StarBorderIcon
+                style={{ color: "#009688", borderColor: "#009688" }}
+                onClick={(e) => {
+                  console.log("StarClicked:>>>>", e.target.value);
+                }}
+              />
+              <Button
+                variant="outlined"
+                style={{ color: "#009688", borderColor: "#009688" }}
+              >
+                Play NOW!{" "}
+                <SportsEsportsIcon
+                  style={{ color: "#009688", borderColor: "#009688" }}
                 />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Paper>
-                <Typography>About {details.title}</Typography>
-                <Typography>{details.description}</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              {/* hier ARE the DETAILS */}
-              {/* <Paper>
-                <TitleImage
-                  images={details.screenshots}
-                  gametitle={details.title}
-                />
-              </Paper> */}
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Paper>
-                <Typography>
-                  Minimum System Requirements({details.platform})
-                </Typography>
+              </Button>
+            </div>
+          </div>
+          <main>
+            <h3>About {details.title}</h3>
+            <p>{details.description}</p>
+          </main>
+          <div id="aditionalInfo">
+            <div>
+              <h3>Aditional Information</h3>
+              <p>Title</p>
+              <p>{details.title}</p>
+            </div>
+            <div>
+              <p>Developer</p>
+              <p>{details.developer}</p>
+            </div>
+            <div>
+              <p>Publisher</p>
+              <p>{details.publisher}</p>
+            </div>
+            <div>
+              <p>Release Date</p>
+              <p>{details.release_date}</p>
+            </div>
+            <div>
+              <p>Genre</p>
+              <p>{details.genre}</p>
+            </div>
+            <div>
+              <p>Platform</p>
+              <p>{details.platform}</p>
+            </div>
+          </div>
+          <div id="screenshots">
+            <h3>{details.title}'s Screenshots</h3>
+            <div id="titleImg">
+              <TitleImage
+                className="screenshotImg"
+                images={details.screenshots}
+                gametitle={details.title}
+              />
+            </div>
+          </div>
+          {details.minimum_system_requirements ? (
+            <div id="systemRequirements">
+              {/* here i have to make an if else and if details.minimum_system_requirements is true then what it comes else details.title + is a browser based game and should run 
+        smoothly on practically any PC with a updated web-browser.
+If you have old hardware or software, you may still be able to play 
+Forge of Empires, but your game experience may suffer. For the best 
+gameplay experience, we recommend the latest versions of Firefox, 
+Chrome, or Internet Explorer.
 
-                <Typography>
-                  OS: {details.minimum_system_requirements.os}
-                </Typography>
+ */}
 
-                <Typography>
-                  Memory: {details.minimum_system_requirements.memory}
-                </Typography>
-
-                <Typography>
-                  Storage: {details.minimum_system_requirements.storage}
-                </Typography>
-
-                <Typography>
-                  Processor: {details.minimum_system_requirements.processor}
-                </Typography>
-
-                <Typography>
-                  Graphics: {details.minimum_system_requirements.graphics}
-                </Typography>
-                <Typography>
-                  Additional Notes: Specifications may change during development
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Paper>5</Paper>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Paper>6</Paper>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Paper>7</Paper>
-            </Grid>
-          </Grid>
-          {/* <div>view</div>
-      {errorDetails && <p>${errorDetails}</p>} */}
-        </Container>
+              <h3>Minimum System Requirements({details.platform})</h3>
+              <div>
+                <h5> OS:</h5>
+                <p>{details.minimum_system_requirements.os}</p>
+              </div>
+              <div>
+                <h5> Memory:</h5>
+                <p>{details.minimum_system_requirements.memory}</p>
+              </div>
+              <div>
+                <h5> Storage:</h5>
+                <p>{details.minimum_system_requirements.storage}</p>
+              </div>
+              <div>
+                <h5> Processor:</h5>
+                <p>{details.minimum_system_requirements.processor}</p>
+              </div>
+              <div>
+                <h5> Graphics:</h5>
+                <p>{details.minimum_system_requirements.graphics}</p>
+              </div>
+              <div>
+                <h5> Additional Notes:</h5>
+                <p>Specifications may change during development</p>
+              </div>
+            </div>
+          ) : (
+            <div id="systemRequirements">
+              <p>
+                {" "}
+                {details.title} is a browser based game and should run smoothly
+                on practically any PC with a updated web-browser. If you have
+                old hardware or software, you may still be able to play Forge of
+                Empires, but your game experience may suffer. For the best
+                gameplay experience, we recommend the latest versions of
+                Firefox, Chrome, or Internet Explorer.
+              </p>
+            </div>
+          )}
+          <div id="user-Reviews">Revs</div>
+        </div>
       )}
     </>
   );

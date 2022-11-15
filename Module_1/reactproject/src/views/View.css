@@ -1,0 +1,77 @@
+/* .css-ta95xa-MuiImageListItem-root .MuiImageListItem-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+} */
+
+.containerView {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr 1fr 3fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    ". img main main ."
+    ". img aditionalInfo aditionalInfo ."
+    ". img screenshots screenshots ."
+    ". img systemRequirements systemRequirements ."
+    ". img user-Reviews user-Reviews .";
+  grid-gap: 0.2rem;
+}
+
+#img {
+  background: #f5a142;
+  grid-area: img;
+}
+
+main {
+  background: #f2f53b;
+  grid-area: main;
+}
+#aditionalInfo {
+  background: #a4f53b;
+  grid-area: aditionalInfo;
+}
+#screenshots {
+  background: #50f53b;
+  grid-area: screenshots;
+}
+
+#systemRequirements {
+  background: #3bf5bd;
+  grid-area: systemRequirements;
+}
+#user-Reviews {
+  background: #3be8f5;
+  grid-area: user-Reviews;
+}
+
+.starButton {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 550px) {
+  .containerView {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 6fr 3fr 1fr 2fr 2fr;
+    grid-template-areas:
+      "img"
+      "main"
+      "aditionalInfo"
+      "screenshots"
+      "systemRequirements"
+      "user-Reviews";
+  }
+  /* #titleImg {
+    display: flex;
+    flex-wrap: wrap;
+  } */
+
+  .screenshotImg {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+}

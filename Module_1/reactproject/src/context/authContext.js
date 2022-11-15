@@ -51,6 +51,9 @@ export const AuthContextProvider = (props) => {
         console.log("error", error);
       });
   };
+  const logout = () => {
+    console.log("loggin out");
+  };
 
   const checkIfUserIsLoggedIn = () => {
     onAuthStateChanged(auth, (user) => {
@@ -75,7 +78,7 @@ export const AuthContextProvider = (props) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, register }}>
+    <AuthContext.Provider value={{ user, setUser, login, register, logout }}>
       {props.children}
     </AuthContext.Provider>
   );
