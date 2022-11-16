@@ -73,6 +73,7 @@ export default function ButtonAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      {console.log("user in navbar", user)}
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -118,8 +119,6 @@ export default function ButtonAppBar() {
               </Link>
             </MenuItem>
             {user ? (
-              <button onClick={logout()}>Logout</button>
-            ) : (
               <>
                 <MenuItem
                   onClick={handleClose}
@@ -127,6 +126,15 @@ export default function ButtonAppBar() {
                 >
                   My account
                 </MenuItem>
+                <MenuItem
+                  onClick={logout()}
+                  style={{ textDecoration: "none", color: "green" }}
+                >
+                  Logout
+                </MenuItem>
+              </>
+            ) : (
+              <>
                 <MenuItem onClick={handleClose}>
                   <Link
                     to="/Login"

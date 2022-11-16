@@ -43,11 +43,11 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const handleEmailChange = (e) => {
-    console.log("email", e.target.value);
+    // console.log("email", e.target.value);
     setEmail(e.target.value);
   };
   const handlePasswordChange = (e) => {
-    console.log("password", e.target.value);
+    // console.log("password", e.target.value);
     setPassword(e.target.value);
   };
 

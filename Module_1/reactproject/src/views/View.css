@@ -19,37 +19,78 @@
     ". img user-Reviews user-Reviews .";
   grid-gap: 0.2rem;
 }
+main p {
+  margin: 5px;
+  text-align: justify;
+  text-indent: 10%;
+}
+* h3,
+h5,
+p {
+  color: #009688;
+}
 
 #img {
-  background: #f5a142;
+  background: #282c34;
   grid-area: img;
+  margin-bottom: 13px;
+}
+.starButtonAndLike {
+  display: flex;
+  justify-content: center;
+  column-gap: 5px;
+}
+.starButtContainer {
+  display: flex;
+  align-self: center;
 }
 
 main {
-  background: #f2f53b;
+  background: #282c34;
   grid-area: main;
+  margin-bottom: 13px;
 }
 #aditionalInfo {
-  background: #a4f53b;
+  background: #282c34;
   grid-area: aditionalInfo;
+  margin-bottom: 13px;
+}
+.aditionalInfoFlex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 5px;
+  column-gap: 10px;
 }
 #screenshots {
-  background: #50f53b;
+  background: #282c34;
   grid-area: screenshots;
+  margin-bottom: 13px;
 }
 
 #systemRequirements {
-  background: #3bf5bd;
+  background: #282c34;
   grid-area: systemRequirements;
+  margin-bottom: 13px;
+}
+.minSysReqFlex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 5px;
+  column-gap: 10px;
 }
 #user-Reviews {
-  background: #3be8f5;
+  background: #282c34;
   grid-area: user-Reviews;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
 }
 
-.starButton {
+.sendImg {
   display: flex;
-  justify-content: space-between;
+  align-self: center;
 }
 
 @media only screen and (max-width: 550px) {
@@ -64,10 +105,6 @@ main {
       "systemRequirements"
       "user-Reviews";
   }
-  /* #titleImg {
-    display: flex;
-    flex-wrap: wrap;
-  } */
 
   .screenshotImg {
     display: flex;

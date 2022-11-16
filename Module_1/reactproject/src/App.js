@@ -12,9 +12,11 @@ import View from "./views/View";
 import { auth } from "./config";
 import { AuthContextProvider } from "./context/authContext.js";
 import StartPage from "./views/Start";
+import Chat from "./components/Chat";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  console.log("auth :>> ", auth);
+  // console.log("auth :>> ", auth);
   // console.log("app :>> ", app);
   return (
     <div className="App">
@@ -24,6 +26,14 @@ function App() {
           <h1>Free Games</h1>
 
           <Routes>
+            <Route
+              path="/Chat"
+              element={
+                <ProtectedRoute>
+                  <Chat />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/" element={<StartPage />} />
             <Route path="/Home" element={<Home />} />
             <Route path="register" element={<Register />} />
